@@ -1,0 +1,36 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("netflix_titles.csv")
+df.head()
+df.info()
+df.describe(include="all")
+df.shape
+df.columns
+df.isnull().sum()
+df.fillna("unknown",inplace=True)
+df.drop_duplicates(inplace=True)
+df["date_added"] = pd.to_datetime(df["date_added"],errors="coerce")
+df.to_csv("cleaned_netflix.csv",index=False)
+df["type"].value_counts().plot(kind="bar",color="green")
+plt.title("count of movies and tv shows")
+plt.xlabel("type")
+plt.ylabel("count")
+plt.legend(["movies","tv shows"])
+plt.savefig("netflix_analysis1.png")
+plt.show()
+country_counts = (df["country"].
+                  dropna().str.split(",").value_counts().head(10))
+country_counts.plot(kind="bar",color="orange")
+plt.title("Top 10 countries with most content")
+plt.xlabel("Country")
+plt.ylabel("Count")
+plt.savefig("netflix_analysis2.png")
+plt.show()
+df["release_year"].value_counts().sort_index().plot(kind="bar",color="orange")
+plt.title("most releasing year")
+plt.xlabel("release year")
+plt.ylabel("count")
+plt.legend(["count"])
+plt.savefig("netflix_analysis3.png")
+plt.show()
