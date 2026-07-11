@@ -15,4 +15,5 @@ Used the pandas library to clean the raw data
 Python
 NumPy
 Pandas
-matplot
+MatplotLib
+Seaborn
