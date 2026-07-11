@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-df = pd.read_csv("netflix_titles.csv")
+import seaborn as sns
+df = pd.read_csv("Data/cleaned_netflix.csv")
 df.head()
 df.info()
 df.describe(include="all")
@@ -34,3 +35,9 @@ plt.ylabel("count")
 plt.legend(["count"])
 plt.savefig("netflix_analysis3.png")
 plt.show()
+sns.barplot(data=df,y="release_year",hue="type")
+plt.title("count of movies and tv shows by release year")
+plt.xlabel("movies and tv shows")
+plt.ylabel("release year")
+plt.show()
+plt.savefig("netflix_analysis4.png")
